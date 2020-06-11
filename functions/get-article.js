@@ -5,12 +5,23 @@ const mdx = require('@mdx-js/mdx');
 const { MDXProvider, mdx: createElement } = require('@mdx-js/react');
 require('@babel/preset-react');
 
+exports.handler = async event => {
+   const { content: articleContent } = JSON.parse(event.body);
+   const content = await renderWithReact(articleContent);
+
+   return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'text/html' },
+      body: content,
+   };
+};
+
 const transform = code =>
    babel.transformSync(code, {
       plugins : ['@babel/plugin-transform-react-jsx'],
    }).code;
 
-module.exports = async mdxCode => {
+const renderWithReact = async mdxCode => {
    const jsx = await mdx(mdxCode, { skipExport: true });
    const code = transform(jsx);
    const scope = { mdx: createElement };
@@ -27,3 +38,4 @@ module.exports = async mdxCode => {
 
    return renderToStaticMarkup(elementWithProvider);
 };
+
