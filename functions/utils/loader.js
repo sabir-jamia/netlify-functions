@@ -7,7 +7,7 @@ require('@babel/preset-react');
 
 const transform = code =>
    babel.transformSync(code, {
-      presets: ['@babel/preset-react'],
+      plugins : ['@babel/plugin-transform-react-jsx'],
    }).code;
 
 module.exports = async mdxCode => {
