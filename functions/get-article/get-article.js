@@ -1,4 +1,4 @@
-const renderWithReact = require('./utils/loader');
+const renderWithReact = require('./loader');
 
 exports.handler = async event => {
    const { content: articleContent } = JSON.parse(event.body);
