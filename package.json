@@ -4,6 +4,7 @@
   "description": "",
   "main": "get-article.js",
   "scripts": {
+    "prebuild": "cd functions/get-article && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
