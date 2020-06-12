@@ -23,8 +23,8 @@ const transform = (code) =>
 
 const renderWithReact = async (mdxCode) => {
    const jsx = await mdx(mdxCode, { skipExport: true });
-   // const code = transform(jsx);
-   return jsx;
+   const code = transform(jsx);
+   return code;
    const scope = { mdx: createElement };
 
    const fn = new Function(
